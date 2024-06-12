@@ -21,7 +21,18 @@
     <p id='result'></p><hr>
     <p >由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 </div>
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4298f977d7f6641b27bc66ef4807aa85"></script>
+
+<script type="text/javascript">
+    window._AMapSecurityConfig = {
+      securityJsCode: "de539b48de6ae9a72ef154c67a264c33",
+    };
+</script>
+<script
+    type="text/javascript"
+    src="https://webapi.amap.com/maps?v=2.0&key=5b549c5ce3695ea8bce0382141ee8838"
+></script>
+
+
 <script type="text/javascript">
     var map = new AMap.Map('container', {
         resizeEnable: true
@@ -46,6 +57,8 @@
     });
     //解析定位结果
     function onComplete(data) {
+        console.log(result);
+        console.log(data);
         document.getElementById('status').innerHTML='定位成功'
         var str = [];
         str.push('定位结果：' + data.position);
@@ -58,6 +71,7 @@
     }
     //解析定位错误信息
     function onError(data) {
+        console.log(result);
         document.getElementById('status').innerHTML='定位失败'
         document.getElementById('result').innerHTML = '失败原因排查信息:'+data.message;
     }
